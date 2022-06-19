@@ -1,7 +1,13 @@
-FROM python:3.8
+FROM python:3.9.7-alpine
+# set work directory
+WORKDIR /usr/src/Shuba_back
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-RUN mkdir /Shuba_back
-WORKDIR /Shuba_back
-COPY requirements.txt /Shuba_back/
-RUN pip install --upgrade pip && pip install -r requirements.txt
-ADD . /Shuba_back/
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+
+RUN pip install -r requirements.txt
+# copy project
+COPY . .
