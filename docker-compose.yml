@@ -2,15 +2,21 @@ version: '3'
 
 services:
   backend:
-    build: ./shuba
-    dockerfile: Dockerfile
+    build: .
+
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/shuba
+      - .:/Shuba_back
     ports:
       - '8000:8000'
     depends_on:
       - db
+  frontend:
+    build: /home/bazz/PycharmProjects/Shuba_front
+    restart: always
+    ports:
+      - 5002:5000
+
   db:
     image: postgres:13-alpine
     restart: always
