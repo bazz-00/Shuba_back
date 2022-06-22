@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'executor.apps.ExecutorConfig',
+    'order.apps.ExecutorConfig',
+
 ]
 
 MIDDLEWARE = [
