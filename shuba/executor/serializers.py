@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Executor, Speciality, Orders
+from .models import Executor, Speciality
 
 
 class ExecutorSerializer(serializers.ModelSerializer):
@@ -14,7 +14,3 @@ class SpecialitySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class OrdersSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Orders
-        fields = '__all__'

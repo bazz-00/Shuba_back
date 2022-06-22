@@ -1,6 +1,6 @@
-from .models import Executor, Speciality, Orders
+from .models import Executor, Speciality
 from rest_framework import viewsets, permissions
-from .serializers import ExecutorSerializer, SpecialitySerializer, OrdersSerializer
+from .serializers import ExecutorSerializer, SpecialitySerializer
 
 
 class ExecutorViewSet(viewsets.ModelViewSet):
@@ -15,7 +15,4 @@ class SpecialityViewSet(viewsets.ModelViewSet):
     serializer_class = SpecialitySerializer
 
 
-class OrdersViewSet(viewsets.ModelViewSet):
-    queryset = Orders.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = OrdersSerializer
+
