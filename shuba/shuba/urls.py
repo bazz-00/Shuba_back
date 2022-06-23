@@ -7,4 +7,5 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path('', include('executor.urls')),
     path('order/', include('order.urls')),
+
 ]
