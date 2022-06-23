@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'executor.apps.ExecutorConfig',
+    'order.apps.OrderConfig',
+    'django_postgres_dropdb',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +67,7 @@ WSGI_APPLICATION = 'shuba.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'shuba',
+        'NAME': 'shubanew',
         'USER': 'shuba',
         'PASSWORD': '5555165',
         'HOST': 'localhost',
