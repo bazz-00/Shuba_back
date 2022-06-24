@@ -1,6 +1,6 @@
-from .models import Executor, Speciality
+from .models import Executor, Speciality, ExecutorComments
 from rest_framework import viewsets, permissions
-from .serializers import ExecutorSerializer, SpecialitySerializer
+from .serializers import ExecutorSerializer, SpecialitySerializer, ExecutorCommentsSerializer
 
 
 class ExecutorViewSet(viewsets.ModelViewSet):
@@ -14,5 +14,10 @@ class SpecialityViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = SpecialitySerializer
 
+
+class ExecutorCommentsViewSet(viewsets.ModelViewSet):
+    queryset = ExecutorComments.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = ExecutorCommentsSerializer
 
 
