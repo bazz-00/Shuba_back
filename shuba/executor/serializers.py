@@ -14,7 +14,9 @@ class SpecialitySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class ExecutorCommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExecutorComments
         fields = '__all__'
+

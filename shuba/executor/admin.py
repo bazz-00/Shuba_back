@@ -18,3 +18,4 @@ class ExecutorCommentsAdmin(admin.ModelAdmin):
 admin.site.register(Executor, ExecutorAdmin)
 admin.site.register(Speciality, SpecialityAdmin)
 admin.site.register(ExecutorComments, ExecutorCommentsAdmin)
+

@@ -18,11 +18,13 @@ class Order(models.Model):
     date_finish = models.DateField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
+
     class Meta:
         db_table = 'order'
 
     def __str__(self):
         return self.title
+
 
 
 class OrderComments(models.Model):
@@ -40,4 +42,5 @@ class OrderComments(models.Model):
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.user, self.order)
+
 

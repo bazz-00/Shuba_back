@@ -19,3 +19,5 @@ class ExecutorCommentsViewSet(viewsets.ModelViewSet):
     queryset = ExecutorComments.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = ExecutorCommentsSerializer
+
+
