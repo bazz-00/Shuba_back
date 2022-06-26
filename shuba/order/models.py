@@ -27,7 +27,6 @@ class Order(models.Model):
         return self.title
 
 
-
 class OrderComments(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
@@ -40,8 +39,20 @@ class OrderComments(models.Model):
         ordering = ('created',)
         db_table = 'order_comments'
 
-
     def __str__(self):
         return 'Comment by {} on {}'.format(self.user, self.order)
+
+
+class OrderPhotos(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='uploadss/%Y/%m/%d/')
+
+    class Meta:
+        db_table = 'orderphotos'
+
+    def __str__(self):
+        return self.order
+
+
 
 
