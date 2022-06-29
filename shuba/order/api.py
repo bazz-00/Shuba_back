@@ -1,6 +1,6 @@
-from .models import Order, OrderComments
+from .models import Order, OrderComments, OrderPhotos
 from rest_framework import viewsets, permissions
-from .serializers import OrderSerializer, OrderCommentsSerializer
+from .serializers import OrderSerializer, OrderCommentsSerializer, OrderPhotosSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -15,6 +15,10 @@ class OrderCommentsViewSet(viewsets.ModelViewSet):
     serializer_class = OrderCommentsSerializer
 
 
+class OrderPhotosViewSet(viewsets.ModelViewSet):
+    queryset = OrderPhotos.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = OrderPhotosSerializer
 
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderComments
+from .models import Order, OrderComments, OrderPhotos
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -11,9 +11,13 @@ class OrderCommentsAdmin(admin.ModelAdmin):
     list_filter = ('is_active', 'created', 'updated')
     search_fields = ('order', 'user', 'body')
 
+class OrderPhotosAdmin(admin.ModelAdmin):
+    list_display = ('order', 'photo')
+
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderComments, OrderCommentsAdmin)
+admin.site.register(OrderPhotos, OrderPhotosAdmin)
 
 
 
