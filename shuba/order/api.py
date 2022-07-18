@@ -9,7 +9,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = OrderSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['title']
+    filterset_fields = ['speciality']
 
 
 class SpecialityOrderViewSet(viewsets.ModelViewSet):

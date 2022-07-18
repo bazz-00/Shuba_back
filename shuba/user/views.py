@@ -1,24 +1,31 @@
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.settings import api_settings
 from rest_framework.views import APIView
+from rest_framework.decorators import action
+from rest_framework import viewsets, permissions
 
-from .models import User
-from .serializers import RegistrationSerializer, LoginSerializer
+from django.contrib.auth.models import User
+from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer
 from .renderers import UserJSONRenderer
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated, ]
+    queryset = User.objects
 
+    @action(methods=["GET"], detail=False)
+    def me(self, request):
+        user = request.user
+        serializer = self.get_serializer(instance=user)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 class RegistrationAPIView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
     renderer_classes = (UserJSONRenderer,)
-
-
-
 
     def post(self, request):
         user = request.data.get('user', {})
