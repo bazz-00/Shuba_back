@@ -1,5 +1,8 @@
 from pathlib import Path
+import environ
+import os
 
+env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,6 +32,8 @@ INSTALLED_APPS = [
     'executor.apps.ExecutorConfig',
     'order.apps.OrderConfig',
     'django_filters',
+
+    "user"
 
 
 ]
@@ -70,7 +75,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'shubanew',
+        'NAME': 'shubanwwww',
         'USER': 'shuba',
 
         'PASSWORD': '5555165',
@@ -140,3 +145,23 @@ REST_FRAMEWORK = {
     ],
 
 }
+
+# Emails
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "lexadlinni@yandex.ru"
+EMAIL_HOST_PASSWORD = "lexadlinnishutko"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# CELERY
+CELERY_BROKER_URL = env("REDIS_URL", default="redis://localhost:6379/0")
+CELERY_RESULT_BACKEND = env("REDIS_URL", default="redis://localhost:6379/0")
+
+
+AUTH_USER_MODEL = "user.User"
