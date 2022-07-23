@@ -23,7 +23,6 @@ class Order(models.Model):
     city = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True)
-    # photo = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True)
     date_finish = models.DateField(null=True, blank=True)
@@ -56,7 +55,7 @@ class OrderComments(models.Model):
 
 class OrderPhotos(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='uploadss/%Y/%m/%d/')
+    photo = models.CharField(max_length=50)
 
     class Meta:
         db_table = 'orderphotos'
