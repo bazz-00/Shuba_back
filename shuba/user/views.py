@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
 from rest_framework import viewsets, permissions
+from user.models import User
 
-from django.contrib.auth.models import User
-from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer
+
+from .serializers import RegistrationSerializer,  UserSerializer
 
 
 
@@ -37,19 +38,4 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance=user)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-class LoginAPIView(APIView):
-    permission_classes = (AllowAny,)
 
-    serializer_class = LoginSerializer
-
-    def get(self, request, format=None):
-        users = User.objects.all()
-        serializer = LoginSerializer(users, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        user = request.data.get('user', {})
-        serializer = self.serializer_class(data=user)
-        serializer.is_valid(raise_exception=True)
-
-        return Response(serializer.data, status=status.HTTP_200_OK)

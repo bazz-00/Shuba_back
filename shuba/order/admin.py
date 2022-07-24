@@ -3,7 +3,7 @@ from .models import Order, OrderComments, OrderPhotos, SpecialityOrder
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'created')  # какие поля модели мы будем видеть в админке
+    list_display = ('title', 'user', 'created')
 
 
 class SpecialityOrderAdmin(admin.ModelAdmin):
