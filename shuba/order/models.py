@@ -57,7 +57,7 @@ class OrderComments(models.Model):
 
 class OrderPhotos(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='uploadss/%Y/%m/%d/')
+    photo = models.URLField()
 
     class Meta:
         db_table = 'orderphotos'

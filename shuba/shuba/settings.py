@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'django_filters',
 
-    "user"
+    "user",
+    'contact.apps.ContactConfig',
 
 
 ]
