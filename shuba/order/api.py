@@ -10,6 +10,11 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['speciality']
+    
+    # def create(self, request, *args, **kwargs):
+    #     # import pdb
+    #     # pdb.set_trace()
+    #     return super(OrderViewSet, self).create(reqeust, *args)
 
 
 class SpecialityOrderViewSet(viewsets.ModelViewSet):
