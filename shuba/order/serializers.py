@@ -1,12 +1,32 @@
 from rest_framework import serializers
 
 from .models import Order, OrderComments, OrderPhotos, SpecialityOrder
+from user.serializers import UserSerializer
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    # user = UserSerializer(default=serializers.CurrentUserDefault())
+    # date_finish = serializers.DateField('date_finish')
+
+
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = [
+            "id",
+            "user",
+            "title",
+            "description",
+            "city",
+            "name",
+            "phoneNumber",
+            "price",
+            "date_finish",
+            "speciality"
+        ]
+        
+    def create(self, validated_data):
+        print(validated_data)
+        return super(OrderSerializer, self).create(validated_data)
 
 
 class SpecialityOrderSerializer(serializers.ModelSerializer):

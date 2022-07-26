@@ -28,7 +28,6 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     date_finish = models.DateField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
-
     speciality = models.ManyToManyField(SpecialityOrder)
 
 
