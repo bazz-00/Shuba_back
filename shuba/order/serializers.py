@@ -8,6 +8,7 @@ class OrderSerializer(serializers.ModelSerializer):
     # user = UserSerializer(default=serializers.CurrentUserDefault())
     # date_finish = serializers.DateField('date_finish')
 
+
     class Meta:
         model = Order
         fields = [
