@@ -8,7 +8,6 @@ class OrderSerializer(serializers.ModelSerializer):
     # user = UserSerializer(default=serializers.CurrentUserDefault())
     # date_finish = serializers.DateField('date_finish')
 
-
     class Meta:
         model = Order
         fields = [
@@ -23,7 +22,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "date_finish",
             "speciality"
         ]
-        
+
     def create(self, validated_data):
         print(validated_data)
         return super(OrderSerializer, self).create(validated_data)
@@ -45,4 +44,3 @@ class OrderPhotosSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderPhotos
         fields = '__all__'
-

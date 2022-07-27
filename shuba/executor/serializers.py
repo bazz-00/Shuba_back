@@ -5,7 +5,15 @@ from .models import Executor, Speciality, ExecutorComments
 class ExecutorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Executor
-        fields = '__all__'
+        fields = [
+            "user_id",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "city",
+            "photo",
+            "speciality"
+        ]
 
 
 class SpecialitySerializer(serializers.ModelSerializer):

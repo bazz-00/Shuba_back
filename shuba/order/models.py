@@ -22,7 +22,7 @@ class Order(models.Model):
     description = models.TextField()
     city = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
-    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True)
+    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16)
     # photo = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True)
@@ -63,7 +63,3 @@ class OrderPhotos(models.Model):
 
     def __str__(self):
         return str(self.order)
-
-
-
-
