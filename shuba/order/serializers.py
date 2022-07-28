@@ -17,7 +17,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "description",
             "city",
             "name",
-            "phoneNumber",
+            "phone_number",
             "price",
             "date_finish",
             "speciality"
