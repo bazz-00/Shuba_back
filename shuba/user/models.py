@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from user.tasks import send_register_email_task
+from .tasks import send_register_email_task
 
 from django.db import models
 

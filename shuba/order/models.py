@@ -24,7 +24,7 @@ class Order(models.Model):
     description = models.TextField()
     city = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
-    phone_number = models.CharField(validators=[phoneNumberRegex], max_length=16, default='SOME STRING')
+    phone_number = models.CharField(validators=[phoneNumberRegex], max_length=16)
     # photo = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True)
