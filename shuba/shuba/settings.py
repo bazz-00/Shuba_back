@@ -10,12 +10,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2ut-xnu7co+9yad5543%mbx97he@%s@y_m1sx)8nfqh882rg6r'
+SECRET_KEY = env("SECRET_KEY", default="super-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(env("DEBUG", default=False))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "localhost",
+    "0.0.0.0"
+    "backend",
+]
 
 # Application definition
 
@@ -35,6 +42,7 @@ INSTALLED_APPS = [
 
     "user",
     'contact.apps.ContactConfig',
+    'debug_toolbar',
 
 
 ]
@@ -47,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'shuba.urls'
@@ -72,21 +81,31 @@ WSGI_APPLICATION = 'shuba.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DB_NAME = env("DB_NAME", default="shubanwwww")
+DB_USER = env("DB_USER", default="shuba")
+DB_PASSWORD = env("DB_PASSWORD", default="5555165")
+DB_HOST = env("DB_HOST", default="localhost")
+DB_PORT = env("DB_PORT", default="5432")
+DATABASE_URL = env(
+    "DATABASE_URL",
+    default=f"postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'shuba_finish',
-        'USER': 'shuba',
-
-        'PASSWORD': '5555165',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': env.db("DATABASE_URL", default=DATABASE_URL)
 }
+if 'RDS_HOSTNAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
 
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -117,10 +136,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+MEDIA_ROOT = 'uploads'
+MEDIA_URL = '/uploads/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

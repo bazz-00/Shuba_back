@@ -1,5 +1,7 @@
 import jwt
-
+import os
+import re
+import base64
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -42,6 +44,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()
+
+    @property
+    def register_token(self):
+        return base64.b64encode(self.email.encode()).decode()
+
+    @classmethod
+    def activate(cls, register_token):
+        email = base64.b64decode(register_token).decode()
+        print("Username", email)
+        user = cls.objects.filter(email=email).first()
+        if user:
+            print("USER", user)
+            user.is_active = True
+            user.save()
+        return user
 
     def send_register_mail(self):
         # send_register_email_task.delay({
